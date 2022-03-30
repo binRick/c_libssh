@@ -34,6 +34,12 @@ test_module1 = executable('test_module1',  [
     ], include_directories : [incdir], dependencies : [libssh2, openssl],
 )
 #//***********************************************************/
+test_ssh_exec = executable('test_ssh_exec', 
+  ['include/ssh.h', 
+  'include/ssh_exec.h',  
+    'src/ssh.c', 
+    'tests/test_ssh_exec.c',  ], include_directories : [incdir], dependencies : [libssh2, openssl],
+)
 test_exec_ssh = executable('test_exec_ssh', 
   ['include/ssh.h', 
     'src/ssh.c', 
@@ -43,6 +49,9 @@ test_exec_ssh = executable('test_exec_ssh',
 tests = [
   ['ssh password auth', 'password', 'password-test.log'],
   ['ssh key auth', 'key', 'key-test.log'],
+]
+ssh_module_tests = [
+  ['ssh_exec 1', test_ssh_exec, 'test-ssh-exec1.log'],
 ]
 module_tests = [
   ['test module 1', test_module1, 'test-module1.log'],
@@ -60,6 +69,9 @@ foreach i : tests
 test(i[0], passh, args: ['-L', i[2], test_exec_ssh, i[1] ], env: test_env)
 endforeach
 foreach i : module_tests
+test(i[0], passh, args: ['-L', i[2], i[1] ], env: test_env)
+endforeach
+foreach i : ssh_module_tests
 test(i[0], passh, args: ['-L', i[2], i[1] ], env: test_env)
 endforeach
 #//***********************************************************/
