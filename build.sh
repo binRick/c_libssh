@@ -16,5 +16,3 @@ ninja
 clear
 
 meson test -v
-
-./test1

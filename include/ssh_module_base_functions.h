@@ -92,7 +92,7 @@ int SSH_ssh_auth_session_handler(SshAuth *auth, LIBSSH2_SESSION *session){
 
   tq_start("ssh_auth");
   switch (auth->id) {
-  case SSH_AUTH_PRIVATE_KEY:
+  case SSH_AUTH_KEY:
     char *keyfile1 = "/root/.ssh/id_rsa.pub";
     char *keyfile2 = "/root/.ssh/id_rsa";
     char *password = "";
@@ -401,7 +401,7 @@ SshAuth *SSH_get_auth(int id, char *host, unsigned int port, char *username, cha
     auth->creds->name = "password";
     auth->creds->data = secret;
     break;
-  case SSH_AUTH_PRIVATE_KEY:
+  case SSH_AUTH_KEY:
     auth->creds->name = "publickey";
     auth->creds->data = secret;
     break;

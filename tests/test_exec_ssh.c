@@ -38,21 +38,37 @@ void test_ssh(SSH ssh, char *secret, char *exec_ssh_cmd){
 }
 
 
+void fail(){
+  fprintf(stderr, "Argument must be ssh auth mode: password, key\n");
+  exit(1);
+}
 
 
-void main_ssh(){
-  char *exec_ssh_cmd  = "hostname";
-  SSH  ssh_password   = DYN_LIT(SshAuthPassword, SSH, { });
-  SSH  ssh_privatekey = DYN_LIT(SshAuthPrivateKey, SSH, {});
+void main_ssh(char *ssh_auth_mode){
+  char *exec_ssh_cmd = "hostname";
 
-  test_ssh(ssh_privatekey, B64_ENCODED_PRIVATE_KEY, exec_ssh_cmd);
-  test_ssh(ssh_password, PASSWORD, exec_ssh_cmd);
+  if (strcmp(ssh_auth_mode, "key") == 0) {
+    SSH ssh_auth_mode = DYN_LIT(SshAuthPrivateKey, SSH,
+                                { }
+                                );
+    test_ssh(ssh_auth_mode, PASSWORD, exec_ssh_cmd);
+  } else if (strcmp(ssh_auth_mode, "password") == 0) {
+    SSH ssh_auth_mode = DYN_LIT(SshAuthPassword, SSH,
+                                { }
+                                );
+    test_ssh(ssh_auth_mode, PASSWORD, exec_ssh_cmd);
+  }else{
+    fail();
+  }
 }
 
 
 int main(__attribute__((unused)) int argc, __attribute__((unused)) char **argv) {
+  if (argc != 2) {
+    fail();
+  }
   if (DO_MAIN_SSH) {
-    main_ssh();
+    main_ssh(argv[1]);
   }
   log_info("TEST2 OK");
 }

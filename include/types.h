@@ -5,12 +5,12 @@
 
 enum {
   SSH_AUTH_PASSWORD = 0,
-  SSH_AUTH_PRIVATE_KEY,
+  SSH_AUTH_KEY,
 }    SSH_AUTH_TYPE_IDS;
 
 char *SSH_AUTH_TYPES[] = {
   "password",
-  "publickey",
+  "key",
   NULL,
 };
 

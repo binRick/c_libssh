@@ -30,7 +30,7 @@ int SshAuthPrivateKey_ping(VSelf){
 int SshAuthPrivateKey_config(VSelf, char *host, unsigned int port, char *username, char *secret){
   VSELF(SshAuthPrivateKey);
   printf("config private key\n");
-  self->auth = SSH_get_auth(SSH_AUTH_PRIVATE_KEY, host, port, username, secret);
+  self->auth = SSH_get_auth(SSH_AUTH_KEY, host, port, username, secret);
   return(2);
 }
 
