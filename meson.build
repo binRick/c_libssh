@@ -10,6 +10,12 @@ openssl = dependency('openssl', required : true)
 sh = find_program('sh', required : true)
 passh = find_program('passh', required : true)
 #//***********************************************************/
+#//libbool = dependency(
+#//  'libbool',
+#//  fallback: ['libbool'],
+#//)
+test_deps = [libssh2, openssl, ]
+#//***********************************************************/
 incdir = include_directories(
   './include', 
   '../',
@@ -22,7 +28,7 @@ test_sshmodule2 = executable('test_sshmodule2',  [
   'include/ssh.h', 
   'src/ssh.c', 
   'tests/test_sshmodule2.c',
-    ], include_directories : [incdir], dependencies : [libssh2, openssl],
+    ], include_directories : [incdir], dependencies : test_deps,
 )
 #//***********************************************************/
 #//***********************************************************/
