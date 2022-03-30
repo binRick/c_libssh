@@ -61,8 +61,8 @@ static int sshmodule2_connect() {
 static int sshmodule2_init(module(sshmodule2) *exports) {
   log_info("sshmodule2_init()");
   exports->private_connect = sshmodule2_private_connect;
-  exports->private  = require(private);
-  exports->secret    = -1;
+  exports->private         = require(private);
+  exports->secret          = -1;
   if (0 != exports->private) {
     log_info("exports->private");
   }
