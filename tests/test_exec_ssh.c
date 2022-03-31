@@ -27,6 +27,8 @@ void test_ssh(SSH ssh, char *secret, char *exec_ssh_cmd){
   log_debug("test ssh start>");
   int config_result = VCALL(ssh, config, SSH_HOST, SSH_PORT, SSH_USER, secret);
 
+  printf("config_result = %d\n", config_result);
+
   int ping = VCALL(ssh, ping);
 
   printf("ping result = %d\n", ping);

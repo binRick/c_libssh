@@ -1,0 +1,19 @@
+{
+    "name": "c_ssh",
+    "version": "0.0.1",
+    "repo": "binRick/c_libssh",
+    "description": "C SSH",
+    "keywords": [
+        "c",
+        "ssh",
+        "module"
+    ],
+    "license": "MIT",
+    "makefile": "Makefile",
+    "install": "make install",
+    "dependencies": {
+        "clibs/ms": "0.0.4",
+        "binRick/c_dbg": "f7ffb638cd774bafe100bfeb22c7dc0d06840ce5",
+        "4thel00z/env.h": "0.1.0"
+    }
+}
