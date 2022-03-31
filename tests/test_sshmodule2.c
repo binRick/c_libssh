@@ -7,8 +7,8 @@
 /*******************/
 #include "../include/sshmodule2.h"
 /*******************/
-#include "../../log/log.c"
-
+#include "src/deps.c"
+/*******************/
 
 /*******************/
 
@@ -20,5 +20,7 @@ int main(void) {
   log_debug("sshmodule2->private_connect:%d", sshmodule2->private_connect());
   log_debug("sshmodule2->secret:%d", sshmodule2->secret);
   clib_module_free(sshmodule2);
+  dbg(12345, % d);
+
   return(0);
 }
